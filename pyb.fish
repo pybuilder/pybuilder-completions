@@ -24,7 +24,10 @@ complete -c pyb -a -Qt --description 'generates Dynamicly tasks'
 # Dynamicly generated completion of pybuilder tasks
 
 function pybuilder
-    command pyb -Qt
+    if command which pyb contains pyb > /dev/null
+        command pyb -Qt
+    else
+    end
 end
 function task_generation
     set tasks (pybuilder | tr ' ' \n)
