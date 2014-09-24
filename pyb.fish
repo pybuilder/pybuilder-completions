@@ -1,6 +1,7 @@
 # pybuilder
 # auto completion for pybuilder
 # Project Options
+function completion
 complete -c pyb -l version --description 'show programs version number and exit'
 complete -c pyb -a -h --description 'show this help message and exit'
 complete -c pyb -a -t --description 'List tasks'
@@ -21,12 +22,12 @@ complete -c pyb -l very-quiet --description 'Very quiet mode; print only errors'
 complete -c pyb -a -C --description 'Disable colored output'
 complete -c pyb -l no-color --description 'Disable colored output'
 complete -c pyb -a -Qt --description 'generates Dynamicly tasks'
-
+end
 # Dynamicly generated completion of pybuilder tasks
 
 function pybuilder
     set binary (command which pyb); or set binary (echo "")
-    test -n $binary; and command pyb -Qt
+    test -n $binary; and command pyb -Qt; completion
 end
 
 function task_generation
