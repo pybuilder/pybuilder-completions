@@ -21,20 +21,19 @@ complete -c pyb -f -a -Q --description 'Very quiet mode; print only errors'
 complete -c pyb -f -l very-quiet --description 'Very quiet mode; print only errors'
 complete -c pyb -f -a -C --description 'Disable colored output'
 complete -c pyb -f -l no-color --description 'Disable colored output'
-complete -c pyb -f -a -Qt --description 'generates Dynamicly tasks'
+complete -c pyb -f -a -Qt --description 'generates tasks dynamically'
 end
-# Dynamicly generated completion of pybuilder tasks
+# Dynamically generated completion of pybuilder tasks
 
 function pybuilder
     set binary (command which pyb); or set binary (echo "")
     test -n $binary; and command pyb -Qt; completion
 end
 
-function task_generation
-    set tasks (pybuilder | tr ' ' \n)
-    set max (count $tasks)
-        for number in (seq $max | tr ' ' \n)
-            echo $tasks[$number]
-        end
+set tasks (pybuilder)
+set max (count $tasks)
+    for number in (seq $max | tr ' ' \n)
+        set task_name (echo $tasks[$number] | cut -d ':' -f1)
+        set task_description (echo $tasks[$number] | cut -d ':' -f2)
+        complete -c pyb -f -a "$task_name" --description "$task_description"
 end
-complete -c pyb -f -a "(task_generation)" --description 'check task description with pyb -t'
