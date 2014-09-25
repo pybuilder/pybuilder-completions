@@ -8,4 +8,4 @@ pybuilder-completions
 ## install
 install this package inside of your virtualenv
 
-'''pip install pybuilder-completions'''
+```pip install pybuilder-completions```
