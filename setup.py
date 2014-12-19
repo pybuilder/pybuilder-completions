@@ -16,7 +16,9 @@ currently supported:
         author_email="max@riehl.io, marcel.wolf@me.com",
         license='MIT',
         url='https://github.com/pybuilder/pybuilder-completions',
-        data_files=[(expanduser('~/.config/fish/completions'), ['pyb.fish'])],
-        install_requires=["pybuilder"],
+        data_files=[
+            (expanduser('~/.config/fish/completions'), ['pyb.fish']),
+            ("/usr/share/zsh/functions/Completion/Linux", ['_pyb'])
+        ],
         zip_safe=True
     )
