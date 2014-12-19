@@ -1,1 +1,2 @@
 include pyb.fish
+include _pyb
