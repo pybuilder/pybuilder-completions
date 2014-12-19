@@ -6,11 +6,12 @@ from os.path import expanduser
 if __name__ == '__main__':
     setup(
         name='pybuilder-completions',
-        version='0.1',
-        description='''shell completions for pybuilder''',
-        long_description='''shell completions for pybuilder
+        version='0.2',
+        description='''shell and zsh completions for pybuilder''',
+        long_description='''shell and zsh completions for pybuilder
 currently supported:
 - fish shell v2
+- zsh
 ''',
         author="PyBuilder Team",
         author_email="max@riehl.io, marcel.wolf@me.com",

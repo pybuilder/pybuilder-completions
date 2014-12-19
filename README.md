@@ -5,8 +5,9 @@ pybuilder-completions
 
 ## Currently supported
 * [fish shell](http://fishshell.com) completions
+* [ZSH](http://grml.org/zsh/) completions
 
 ## Installation
-install this package inside of your virtualenv
+Install this package
 
-```pip install pybuilder-completions```
+```sudo pip install pybuilder-completions```
