@@ -12,8 +12,13 @@ case "$state" in
         tasks+=( $TASK_LINE )
     done
 
-    _describe -t tasks 'tasks' tasks && ret=0
+    _arguments -s '-v[Verbose output]' '-X[Debug output]' '-q[Quiet mode]' \
+        '-Q[Very quiet mode]' '-C[Disable colored output]' '-h[Show help]' \
+        '--start-project[Initialize a new project structure]' \
+        '-t[Show available tasks]'
 
+
+    _describe -t tasks 'tasks' tasks && ret=0
     ;;
 esac
 
