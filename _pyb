@@ -1,7 +1,20 @@
 #compdef pyb
 typeset -A opt_args
 
-_arguments -C '*:Task:->tasks' && ret=0
+
+local -a common_opts
+common_opts=(
+        '-v[Verbose output]'
+        '-X[Debug output]'
+        '-q[Quiet mode]'
+        '-Q[Very quiet mode]'
+        '-C[Disable colored output]'
+        '-h[Show help]'
+        '--start-project[Initialize a new project structure]'
+        '-t[Show available tasks]'
+)
+
+_arguments -C '*:Task:->tasks' $common_opts && ret=0
 
 case "$state" in
     (tasks)
