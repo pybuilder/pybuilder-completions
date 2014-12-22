@@ -11,3 +11,7 @@ pybuilder-completions
 Install this package
 
 ```sudo pip install pybuilder-completions```
+
+## Notes
+`sudo pip install` is required because the zsh completions live in a privileged folder.
+If you know of a way to stick them somewhere in the user home, please let me know.
