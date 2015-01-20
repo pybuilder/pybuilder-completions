@@ -6,7 +6,7 @@ from os.path import expanduser
 if __name__ == '__main__':
     setup(
         name='pybuilder-completions',
-        version='0.4',
+        version='0.5',
         description='shell and zsh completions for pybuilder',
         long_description=('shell and zsh completions for pybuilder\n',
                           'currently supported:\n'
