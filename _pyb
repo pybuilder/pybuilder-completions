@@ -1,5 +1,4 @@
 #compdef pyb
-typeset -A opt_args
 
 
 command -v pyb >/dev/null 2>&1 || return 0
