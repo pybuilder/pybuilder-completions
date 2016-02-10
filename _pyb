@@ -16,6 +16,7 @@ common_opts=(
         '--start-project[Initialize a new project structure]'
         '--update-project[Update build descriptors and python project structure]'
         '-t[Show available tasks]'
+        '-T[List execution plan tasks]'
 )
 
 _arguments -C '*:Task:->tasks' $common_opts && ret=0
