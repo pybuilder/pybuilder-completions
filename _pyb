@@ -16,13 +16,16 @@ extended_opts=(
         '-T[List execution plan tasks]'
 )
 
+# no pyb available at all
 if ! command -v pyb > /dev/null 2>&1; then
     _message "unable to complete, no pyb found :("
 
+# no build.py in current directory, presumably
 elif ! pyb -Qt > /dev/null 2>&1; then
     _message "unable to find a build.py, limited completion available"
     _arguments -s $simple_opts
 
+# the full monty
 else
     _arguments -C '*:Task:->tasks' $simple_opts $extended_opts
 
