@@ -1,37 +1,43 @@
 #compdef pyb
 
-
-command -v pyb >/dev/null 2>&1 || return 0
-pyb -Qt >/dev/null 2>&1 || return 0
-
-local -a common_opts
-common_opts=(
+local -a simple_opts extended_opts
+simple_opts=(
+        '--start-project[Initialize a new project structure]'
         '-v[Verbose output]'
         '-X[Debug output]'
+        '-h[Show help]'
+)
+extended_opts=(
         '-q[Quiet mode]'
         '-Q[Very quiet mode]'
         '-C[Disable colored output]'
-        '-h[Show help]'
-        '--start-project[Initialize a new project structure]'
         '--update-project[Update build descriptors and python project structure]'
         '-t[Show available tasks]'
         '-T[List execution plan tasks]'
 )
 
-_arguments -C '*:Task:->tasks' $common_opts
+if ! command -v pyb > /dev/null 2>&1; then
+    _message "unable to complete, no pyb found :("
 
-case "$state" in
-    (tasks)
+elif ! pyb -Qt > /dev/null 2>&1; then
+    _message "unable to find a build.py, limited completion available"
+    _arguments -s $simple_opts
 
-    local tasks; tasks=()
+else
+    _arguments -C '*:Task:->tasks' $simple_opts $extended_opts
 
-    pyb -Qt | while read TASK_LINE; do
-        tasks+=( $TASK_LINE )
-    done
+    case "$state" in
+        (tasks)
 
-    _arguments -s $common_opts
+        local tasks; tasks=()
 
+        pyb -Qt | while read TASK_LINE; do
+            tasks+=( $TASK_LINE )
+        done
 
-    _describe -t tasks 'tasks' tasks
-    ;;
-esac
+        _arguments -s $simple_opts $extended_opts
+
+        _describe -t tasks 'tasks' tasks
+        ;;
+    esac
+fi
