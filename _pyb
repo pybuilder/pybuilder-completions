@@ -1,5 +1,4 @@
 #compdef pyb
-typeset -A opt_args
 
 
 command -v pyb >/dev/null 2>&1 || return 0
@@ -14,7 +13,9 @@ common_opts=(
         '-C[Disable colored output]'
         '-h[Show help]'
         '--start-project[Initialize a new project structure]'
+        '--update-project[Update build descriptors and python project structure]'
         '-t[Show available tasks]'
+        '-T[List execution plan tasks]'
 )
 
 _arguments -C '*:Task:->tasks' $common_opts && ret=0
@@ -28,10 +29,7 @@ case "$state" in
         tasks+=( $TASK_LINE )
     done
 
-    _arguments -s '-v[Verbose output]' '-X[Debug output]' '-q[Quiet mode]' \
-        '-Q[Very quiet mode]' '-C[Disable colored output]' '-h[Show help]' \
-        '--start-project[Initialize a new project structure]' \
-        '-t[Show available tasks]'
+    _arguments -s $common_opts
 
 
     _describe -t tasks 'tasks' tasks && ret=0
