@@ -18,7 +18,7 @@ common_opts=(
         '-T[List execution plan tasks]'
 )
 
-_arguments -C '*:Task:->tasks' $common_opts && ret=0
+_arguments -C '*:Task:->tasks' $common_opts
 
 case "$state" in
     (tasks)
@@ -32,8 +32,6 @@ case "$state" in
     _arguments -s $common_opts
 
 
-    _describe -t tasks 'tasks' tasks && ret=0
+    _describe -t tasks 'tasks' tasks
     ;;
 esac
-
-return 1
