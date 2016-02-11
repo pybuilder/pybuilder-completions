@@ -16,6 +16,14 @@ extended_opts=(
         '-T[List execution plan tasks]'
 )
 
+__pyb_tasks(){
+    local tasks;
+    pyb -Qt | while read TASK_LINE; do
+        tasks+=( $TASK_LINE )
+    done
+    _describe -t tasks 'tasks' tasks
+}
+
 # no pyb available at all
 if ! command -v pyb > /dev/null 2>&1; then
     _message "unable to complete, no pyb found :("
@@ -31,16 +39,8 @@ else
 
     case "$state" in
         (tasks)
-
-        local tasks; tasks=()
-
-        pyb -Qt | while read TASK_LINE; do
-            tasks+=( $TASK_LINE )
-        done
-
-        _arguments -s $simple_opts $extended_opts
-
-        _describe -t tasks 'tasks' tasks
+            _arguments -s $simple_opts $extended_opts
+            __pyb_tasks
         ;;
     esac
 fi
